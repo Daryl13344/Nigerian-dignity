@@ -1,7 +1,7 @@
 # 🛑 Nigerian Scam Infrastructure — AS36352 Exposure
 
 <p align="center">
-  <img src="image.png" alt="Namesilo & Webnic — Core of Global Scam Infrastructure" width="500">
+  <img src="image.png" alt="Namesilo & Webnic — Core of Global Scam Infrastructure" width="300">
 </p>
 
 > **Dataset:** This repository contains only a fraction of domains hosted on **two IP addresses** within **AS36352** (Betahost247, Nigeria).  
